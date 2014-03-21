@@ -1,0 +1,98 @@
+sub<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/desktop.css" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jplayer/jquery.jplayer.min.js"></script>
+        <title>Phil Boscarino
+        </title>
+        <link rel="shortcut icon" href="http://i.imgur.com/icOQwuX.png" type="image/x-icon" >
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">                
+        <script type="text/javascript" src="//use.typekit.net/sjn0zpp.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    </head>
+
+
+
+    <body>
+        <div id="playerContainer" style="height:100%; margin-top: 0px;">
+            <div id="jplayer" style="width: 100%; height: 100%;">
+                <img id="jp_poster_0" style="width: 100%; height: 100%; display: none;">
+                <video id="jp_video_0" preload="metadata" src="NewProject.mov" style="width: 100%; height: 100%;"></video>
+            </div> 
+        </div>
+ 
+        <div id="content">
+            <div class="top">
+                <div class="title">Phil
+                </div>
+                <div class="subtitle">Boscarino
+                </div>
+            </div>
+            <div class="bottom">  
+                <div class="links">
+                    <a class="link twitter" href="https://twitter.com/PhilBoscarino" target="_blank"></a>
+                    <a class="link tumblr" href="http://philbos.co" target="_blank"></a>
+                    <a class="link facebook" href="https://www.facebook.com/phillboscarino" target="_blank"></a>
+                    <a class="link instagram" href="http://instagram.com/philboscarino" target="_blank"></a>
+                    <a class="link mail" href="http://philbos.co/ask" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+<script type="text/javascript">
+    
+    function setVideoSize() {
+        var width, height;
+        var videoHeight = 720;
+        var videoWidth = 1140;
+        var videoAspect = videoWidth / videoHeight;
+        var screenAspect = $(window).width() / $(window).height();
+        if (videoAspect < screenAspect) {
+            width = $(window).width();
+            height = $(window).width() / videoWidth * videoHeight;
+        }
+        else {
+            width = $(window).height() / videoHeight * videoWidth;
+            height = $(window).height();
+        }
+        $('#playerContainer').css({
+            'height': height,
+            'width': width,
+            'margin-left': -(width - $(window).width()) / 2,
+            'margin-top': -(height - $(window).height()) / 2
+        });
+    }
+
+    $(document).ready(function() {
+        $("#jplayer").jPlayer({
+            ready: function() {
+
+                var testOps = {
+                    m4v: "http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer_480x270_h264aac.m4v",
+                    ogv: "http://www.jplayer.org/video/ogv/Big_Buck_Bunny_Trailer_480x270.ogv",
+                    webmv: "http://www.jplayer.org/video/webm/Big_Buck_Bunny_Trailer.webm",
+                    poster: "http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"
+                };
+                var realOps = {
+                    // m4v: "http://dizofyq6y2cqx.cloudfront.net/lorde/teamvid3.m4v",
+                    ogv: "NewProject.ogv"
+                };
+
+                $(this).jPlayer("setMedia", realOps).jPlayer("play");
+            },
+            swfPath: "http://lorde.co.nz/js/jplayer",
+            supplied: "ogv,m4v",
+            loop: true,
+            size: {height: '100%', width: '100%'}
+        });
+        setVideoSize();
+        $('object').height(200);//TODO this fixes video for safari but beter solution surely?
+    });
+
+    $(window).resize(setVideoSize);
+</script>
+    </body>
+</html>
